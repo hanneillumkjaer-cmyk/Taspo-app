@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TASPO Taskbook – coming soon</title>
+<meta name="description" content="The TASPO Digital Taskbook helps Tanzanian students plan their days, set goals and run their own projects. Coming soon.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1E2A5A">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📘</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1E2A5A;
+    --ink-soft: #4A5580;
+    --paper: #FBFCFE;
+    --rule: #DCE5F3;
+    --margin: #E07A7A;
+    --tick: #2F8F5B;
+    --line: 32px;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; margin: 0; }
+  html, body { min-height: 100%; }
+  body {
+    background-color: var(--paper);
+    background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--line) - 1px), var(--rule) calc(var(--line) - 1px), var(--rule) var(--line));
+    color: var(--ink);
+    font-family: "Atkinson Hyperlegible", "Segoe UI", Arial, sans-serif;
+    font-size: 1.0625rem;
+    line-height: var(--line);
+  }
+  .page {
+    position: relative;
+    min-height: 100vh;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: calc(var(--line) * 3) 24px calc(var(--line) * 2) 96px;
+  }
+  .page::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0; left: 64px;
+    border-left: 2px solid var(--margin);
+    opacity: .7;
+  }
+  .brand {
+    font-family: "Bricolage Grotesque", "Segoe UI", Arial, sans-serif;
+    font-weight: 800;
+    font-size: 1.125rem;
+    letter-spacing: .01em;
+  }
+  .brand span { font-weight: 600; color: var(--ink-soft); }
+  h1 {
+    font-family: "Bricolage Grotesque", "Segoe UI", Arial, sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    line-height: 1.05;
+    letter-spacing: -.02em;
+    margin-top: calc(var(--line) * 2);
+    max-width: 14ch;
+  }
+  .sw {
+    margin-top: var(--line);
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+  }
+  .intro {
+    margin-top: var(--line);
+    max-width: 58ch;
+  }
+  h2 {
+    font-family: "Bricolage Grotesque", "Segoe UI", Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-top: calc(var(--line) * 2);
+  }
+  ol.plan {
+    list-style: none;
+    padding: 0;
+    margin-top: calc(var(--line) / 2);
+  }
+  ol.plan li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: var(--line);
+    padding: 4px 0;
+  }
+  .box {
+    flex: none;
+    width: 22px; height: 22px;
+    border: 2px solid var(--ink);
+    border-radius: 4px;
+    background: var(--paper);
+    display: grid;
+    place-items: center;
+  }
+  .box svg { width: 16px; height: 16px; overflow: visible; }
+  .box path {
+    fill: none;
+    stroke: var(--tick);
+    stroke-width: 3.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 24;
+    stroke-dashoffset: 24;
+    animation: draw .45s ease-out forwards;
+  }
+  li:nth-child(2) .box path { animation-delay: .5s; }
+  .done .label { color: var(--ink-soft); text-decoration: line-through; text-decoration-color: rgba(30, 42, 90, .35); }
+  .now .box { border-color: var(--tick); }
+  .now .box::after {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--tick);
+  }
+  .now .label { font-weight: 700; }
+  .tag {
+    white-space: nowrap;
+    font-size: .875rem;
+    color: var(--tick);
+    font-weight: 700;
+  }
+  .later .box { border-color: var(--ink-soft); opacity: .6; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  footer {
+    margin-top: calc(var(--line) * 3);
+    color: var(--ink-soft);
+    font-size: .9375rem;
+  }
+  a {
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  a:hover { color: var(--tick); }
+  a:focus-visible { outline: 3px solid var(--tick); outline-offset: 3px; border-radius: 2px; }
+  @media (max-width: 560px) {
+    .page { padding-left: 56px; padding-right: 20px; padding-top: calc(var(--line) * 2); }
+    .page::before { left: 36px; }
+    h1 { margin-top: var(--line); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .box path { animation: none; stroke-dashoffset: 0; }
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+    <p class="brand">TASPO <span>Taskbook</span></p>
+
+    <h1>The Digital Taskbook is on its way.</h1>
+    <p class="sw" lang="sw">Inakuja hivi karibuni.</p>
+
+    <p class="intro">A simple app where students plan their days, set goals, track their tasks and run their own projects, with teachers following their progress. We are building it now, and it will open first in a small group of pilot schools.</p>
+
+    <h2>Our plan so far</h2>
+    <ol class="plan">
+      <li class="done">
+        <span class="box" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8.5 6.5 13 14 3"/></svg></span>
+        <span class="label">Plan what the Taskbook will do</span>
+        <span class="visually-hidden" style="position:absolute;left:-9999px">(done)</span>
+      </li>
+      <li class="done">
+        <span class="box" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8.5 6.5 13 14 3"/></svg></span>
+        <span class="label">Set up app.taspo.org</span>
+        <span style="position:absolute;left:-9999px">(done)</span>
+      </li>
+      <li class="now">
+        <span class="box" aria-hidden="true"></span>
+        <span class="label">Design the screens with students and teachers</span>
+        <span class="tag">In progress</span>
+      </li>
+      <li class="later">
+        <span class="box" aria-hidden="true"></span>
+        <span class="label">Build and test the app</span>
+      </li>
+      <li class="later">
+        <span class="box" aria-hidden="true"></span>
+        <span class="label">Open to the first pilot schools</span>
+      </li>
+    </ol>
+
+    <footer>
+      <p>Tanzania Student Plan Organization</p>
+      <p>Read more about our work at <a href="https://www.taspo.org">www.taspo.org</a></p>
+    </footer>
+  </main>
+</body>
+</html>
