@@ -64,6 +64,20 @@
     margin-top: calc(var(--line) * 2);
     max-width: 14ch;
   }
+  .heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: calc(var(--line) * 2);
+  }
+  .heading h1 { margin-top: 0; }
+  .logo {
+    flex: none;
+    width: 160px;
+    height: auto;
+    border-radius: 22%;
+  }
   .sw {
     margin-top: var(--line);
     font-size: 1.25rem;
@@ -145,7 +159,8 @@
   @media (max-width: 560px) {
     .page { padding-left: 56px; padding-right: 20px; padding-top: calc(var(--line) * 2); }
     .page::before { left: 36px; }
-    h1 { margin-top: var(--line); }
+    .heading { margin-top: var(--line); gap: 12px; }
+    .logo { width: 88px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .box path { animation: none; stroke-dashoffset: 0; }
@@ -156,7 +171,10 @@
   <main class="page">
     <p class="brand">TASPO <span>Taskbook</span></p>
 
-    <h1>The Digital Taskbook is on its way!</h1>
+    <div class="heading">
+      <h1>The Digital Taskbook is on its way!</h1>
+      <img class="logo" src="images/taspo-app-logo.jpeg" width="160" height="160" alt="TASPO – Tanzania Student Plan Organisation logo">
+    </div>
     <p class="sw" lang="sw">Inakuja hivi karibuni.</p>
 
     <p class="intro">A simple app where students plan their days, set goals, track their tasks and run their own projects, with teachers following their progress. We are building it now, and it will open first in a small group of pilot schools.</p>
